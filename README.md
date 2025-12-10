@@ -40,8 +40,10 @@ SIGAP adalah sistem informasi berbasis web untuk monitoring dan manajemen paket 
 
 ### 2. Setup Database
 1. Buka phpMyAdmin (http://localhost/phpmyadmin)
-2. Import file `database/sigap_unhan.sql`
-3. Database `sigap_unhan` akan otomatis terbuat beserta sample data
+2. Klik tab "Import"
+3. Pilih file `database/sigap_unhan.sql`
+4. Klik "Go"
+5. Database `sigap_unhan` akan otomatis terbuat beserta semua tabel dan data sample
 
 ### 3. Konfigurasi
 Edit file `config/database.php` jika diperlukan:

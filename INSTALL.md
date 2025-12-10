@@ -7,23 +7,10 @@
 ## Langkah 2: Setup Database
 1. Start Apache & MySQL di XAMPP Control Panel
 2. Buka phpMyAdmin: http://localhost/phpmyadmin
-3. Klik "New" untuk membuat database baru
-4. Nama database: `sigap_unhan`
-5. Klik tab "Import"
-6. Pilih file: `database/sigap_unhan.sql`
-7. Klik "Go"
-
-### Perbaikan Data (Jika Database Sudah Ada)
-Jika database sudah ada dan foto serah terima rusak:
-1. Buka phpMyAdmin → Database `sigap_unhan`
-2. Klik tab "SQL"
-3. Import file: `database/update_existing_data.sql`
-4. Atau copy-paste query berikut:
-```sql
-UPDATE packages SET foto_serah_terima = NULL 
-WHERE foto_serah_terima IS NOT NULL;
-```
-5. Klik "Go" - Foto rusak akan direset, siap upload baru
+3. Klik tab "Import"
+4. Pilih file: `database/sigap_unhan.sql`
+5. Klik "Go"
+6. Database `sigap_unhan` akan otomatis terbuat dengan semua tabel dan data sample
 
 ## Langkah 3: Cek Konfigurasi
 File `config/database.php` sudah dikonfigurasi:
