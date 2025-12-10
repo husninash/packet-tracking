@@ -1,0 +1,24 @@
+# Security settings
+Options -Indexes
+
+# Prevent access to config files
+<FilesMatch "\.(ini|log|conf)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to .git folder
+RedirectMatch 404 /\.git
+
+# Enable error reporting (development only - disable in production)
+php_flag display_errors On
+php_value error_reporting E_ALL
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Enable URL rewriting (if needed later)
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /SistemPaketUnhan/
+</IfModule>

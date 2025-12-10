@@ -1,0 +1,8 @@
+# Allow access to image files
+<FilesMatch "\.(jpg|jpeg|png|gif)$">
+    Require all granted
+</FilesMatch>
+
+# For Apache 2.2
+Order allow,deny
+Allow from all

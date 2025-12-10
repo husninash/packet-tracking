@@ -1,0 +1,28 @@
+# Ignore uploaded files (photos)
+uploads/packages/*
+uploads/handover/*
+
+# Keep the folder structure but ignore contents
+!uploads/packages/.gitkeep
+!uploads/handover/.gitkeep
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.sublime-*
+
+# Ignore config (jika ada config lokal)
+# config/config.local.php
+
+# Ignore logs
+*.log
+
+# Ignore temporary files
+*.tmp
+*.bak
+*~
