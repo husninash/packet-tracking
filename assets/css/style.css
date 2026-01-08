@@ -172,17 +172,21 @@ img {
     width: 260px;
     background: linear-gradient(180deg, var(--primary-color) 0%, var(--primary-dark) 100%);
     color: var(--white);
-    min-height: 100vh;
+    height: 100vh;
     position: fixed;
     left: 0;
     top: 0;
     padding: var(--spacing-xl) 0;
     box-shadow: var(--shadow-lg);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
 }
 
 .sidebar-brand {
     padding: 0 var(--spacing-lg);
     margin-bottom: var(--spacing-2xl);
+    flex-shrink: 0;
 }
 
 .sidebar-brand h2 {
@@ -197,6 +201,8 @@ img {
 
 .sidebar-menu {
     list-style: none;
+    flex: 1;
+    padding-bottom: var(--spacing-md);
 }
 
 .sidebar-menu-item {
@@ -219,9 +225,16 @@ img {
     transform: translateX(5px);
 }
 
+.sidebar-menu-item.logout {
+    margin-top: auto;
+    position: sticky;
+    bottom: 0;
+    background: linear-gradient(180deg, transparent 0%, var(--primary-dark) 20%);
+    padding-top: var(--spacing-md);
+}
+
 .sidebar-menu-item.logout a {
     background: var(--danger-color);
-    margin-top: var(--spacing-xl);
 }
 
 .sidebar-menu-item.logout a:hover {

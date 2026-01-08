@@ -5,6 +5,7 @@
  */
 
 define('DB_HOST', 'localhost');
+define('DB_PORT', 3307);
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'sigap_unhan');
@@ -28,7 +29,8 @@ class Database {
      * Membuat koneksi mysqli
      */
     private function connect() {
-        $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->dbname);
+        // Explicitly set port because XAMPP MySQL runs on 3307 here
+        $this->conn = new mysqli($this->host, $this->user, $this->pass, $this->dbname, DB_PORT);
         
         if ($this->conn->connect_error) {
             $this->error = "Connection failed: " . $this->conn->connect_error;

@@ -48,6 +48,11 @@ $recentLogs = $userModel->getActivityLogs(10);
                 </a>
             </li>
             <li class="sidebar-menu-item">
+                <a href="riwayat-paket.php">
+                    🕓 Riwayat Paket
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
                 <a href="manajemen-petugas.php">
                     👥 Manajemen Petugas
                 </a>

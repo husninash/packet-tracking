@@ -9,11 +9,9 @@ require_once __DIR__ . '/../../config/config.php';
 requireRole(ROLE_PETUGAS);
 
 $packageModel = new Package();
-$prodiModel = new ProgramStudi();
 
 $stats = $packageModel->getStatistics();
 $packages = $packageModel->getAllPackages();
-$allProdi = $prodiModel->getAllProdi();
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -114,7 +112,7 @@ $allProdi = $prodiModel->getAllProdi();
                             type="text" 
                             id="searchInput" 
                             class="form-control" 
-                            placeholder="Cari nama penerima, NIM, atau prodi..."
+                            placeholder="Cari nama penerima..."
                         >
                     </div>
                     <select id="filterStatus" class="form-control filter-select">
@@ -132,8 +130,6 @@ $allProdi = $prodiModel->getAllProdi();
                                 <th>No</th>
                                 <th>Foto</th>
                                 <th>Nama Penerima</th>
-                                <th>NIM</th>
-                                <th>Prodi</th>
                                 <th>Tanggal</th>
                                 <th>Status</th>
                                 <th>Aksi</th>
@@ -142,7 +138,7 @@ $allProdi = $prodiModel->getAllProdi();
                         <tbody>
                             <?php if (empty($packages)): ?>
                                 <tr>
-                                    <td colspan="8" style="text-align: center; padding: 2rem;">
+                                    <td colspan="6" style="text-align: center; padding: 2rem;">
                                         Belum ada data paket
                                     </td>
                                 </tr>
@@ -158,8 +154,6 @@ $allProdi = $prodiModel->getAllProdi();
                                             <?php endif; ?>
                                         </td>
                                         <td><strong><?= htmlspecialchars($package['nama_penerima']) ?></strong></td>
-                                        <td><?= htmlspecialchars($package['nim']) ?></td>
-                                        <td><?= htmlspecialchars($package['nama_prodi']) ?></td>
                                         <td><?= date('d-m-Y', strtotime($package['tanggal_datang'])) ?></td>
                                         <td>
                                             <?php if ($package['status'] === STATUS_SUDAH_DIAMBIL): ?>

@@ -8,9 +8,6 @@ require_once __DIR__ . '/../../config/config.php';
 
 requireRole(ROLE_ADMIN);
 
-$prodiModel = new ProgramStudi();
-$allProdi = $prodiModel->getAllProdi();
-
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $packageController = new PackageController();
@@ -54,6 +51,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <li class="sidebar-menu-item">
                 <a href="tambah-paket.php" class="active">
                     ➕ Tambah Paket
+                </a>
+            </li>
+            <li class="sidebar-menu-item">
+                <a href="riwayat-paket.php">
+                    🕓 Riwayat Paket
                 </a>
             </li>
             <li class="sidebar-menu-item">
@@ -104,22 +106,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 type="text" 
                                 name="nama_penerima" 
                                 class="form-control" 
-                                placeholder="Masukkan nama lengkap"
+                                placeholder="Masukkan nama lengkap penerima"
                                 required
                             >
-                        </div>
-
-                        <!-- Program Studi -->
-                        <div class="form-group">
-                            <label class="form-label required">Program Studi</label>
-                            <select name="prodi_id" class="form-control" required>
-                                <option value="">-- Pilih Program Studi --</option>
-                                <?php foreach ($allProdi as $prodi): ?>
-                                    <option value="<?= $prodi['id'] ?>">
-                                        <?= htmlspecialchars($prodi['nama_prodi']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
                         </div>
 
                         <!-- Tanggal Datang -->
@@ -210,17 +199,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Form validation
         document.getElementById('formTambahPaket').addEventListener('submit', function(e) {
             const nama = this.querySelector('[name="nama_penerima"]').value.trim();
-            const nim = this.querySelector('[name="nim"]').value.trim();
             
             if (nama.length < 3) {
                 e.preventDefault();
                 alert('Nama penerima minimal 3 karakter!');
-                return;
-            }
-            
-            if (nim.length < 5) {
-                e.preventDefault();
-                alert('NIM minimal 5 karakter!');
                 return;
             }
         });

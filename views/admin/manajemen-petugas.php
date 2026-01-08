@@ -65,6 +65,9 @@ unset($_SESSION['success_message']);
                 </a>
             </li>
             <li class="sidebar-menu-item">
+                <a href="riwayat-paket.php">🕓 Riwayat Paket</a>
+            </li>
+            <li class="sidebar-menu-item">
                 <a href="manajemen-petugas.php" class="active">
                     👥 Manajemen Petugas
                 </a>

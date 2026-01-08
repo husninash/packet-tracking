@@ -62,8 +62,6 @@ $packages = $packageModel->getAllPackages(['status' => STATUS_SUDAH_DIAMBIL]);
                             <tr>
                                 <th>No</th>
                                 <th>Nama Penerima</th>
-                                <th>NIM</th>
-                                <th>Prodi</th>
                                 <th>Tanggal Datang</th>
                                 <th>Tanggal Diambil</th>
                                 <th>Bukti Serah Terima</th>
@@ -74,14 +72,12 @@ $packages = $packageModel->getAllPackages(['status' => STATUS_SUDAH_DIAMBIL]);
                                 <tr>
                                     <td><?= $no++ ?></td>
                                     <td><?= htmlspecialchars($pkg['nama_penerima']) ?></td>
-                                    <td><?= htmlspecialchars($pkg['nim']) ?></td>
-                                    <td><?= htmlspecialchars($pkg['nama_prodi']) ?></td>
                                     <td><?= date('d-m-Y', strtotime($pkg['tanggal_datang'])) ?></td>
                                     <td><?= $pkg['tanggal_diambil'] ? date('d-m-Y H:i', strtotime($pkg['tanggal_diambil'])) : '-' ?></td>
                                     <td>
-                                        <?php if (!empty($pkg['foto_serah_terima'])): ?>
+                                        <?php if ($pkg['foto_serah_terima']): ?>
                                             <a href="<?= UPLOAD_URL . $pkg['foto_serah_terima'] ?>" target="_blank">
-                                                <img src="<?= UPLOAD_URL . $pkg['foto_serah_terima'] ?>" alt="Bukti" style="max-width: 50px; max-height: 50px; object-fit: cover; cursor: pointer;">
+                                                <img src="<?= UPLOAD_URL . $pkg['foto_serah_terima'] ?>" alt="Bukti" style="width: 50px; height: 50px; object-fit: cover; border-radius: var(--radius-md); cursor: pointer;">
                                             </a>
                                         <?php else: ?>
                                             -
@@ -97,5 +93,17 @@ $packages = $packageModel->getAllPackages(['status' => STATUS_SUDAH_DIAMBIL]);
     </div>
 
     <script src="../../assets/js/main.js"></script>
+    <script>
+        // Search functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#packageTable tbody tr');
+            
+            rows.forEach(row => {
+                const text = row.textContent.toLowerCase();
+                row.style.display = text.includes(searchValue) ? '' : 'none';
+            });
+        });
+    </script>
 </body>
 </html>

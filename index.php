@@ -7,11 +7,9 @@
 require_once __DIR__ . '/config/config.php';
 
 $packageModel = new Package();
-$prodiModel = new ProgramStudi();
 
 // Get all packages for public view
 $packages = $packageModel->getAllPackages(['status' => STATUS_BELUM_DIAMBIL]);
-$allProdi = $prodiModel->getAllProdi();
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -81,15 +79,9 @@ $allProdi = $prodiModel->getAllProdi();
                     type="text" 
                     id="searchInput" 
                     class="form-control" 
-                    placeholder="Cari nama penerima atau program studi..."
+                    placeholder="Cari nama penerima..."
                 >
             </div>
-            <select id="filterProdi" class="form-control filter-select">
-                <option value="">Semua Program Studi</option>
-                <?php foreach ($allProdi as $prodi): ?>
-                    <option value="<?= $prodi['id'] ?>"><?= htmlspecialchars($prodi['nama_prodi']) ?></option>
-                <?php endforeach; ?>
-            </select>
             <button class="btn btn-primary" onclick="openModal('modalCekPaket')">
                 🔍 Cek Paket Saya
             </button>
@@ -103,7 +95,6 @@ $allProdi = $prodiModel->getAllProdi();
                         <th>No</th>
                         <th>Foto Paket</th>
                         <th>Nama Penerima</th>
-                        <th>Program Studi</th>
                         <th>Tanggal Datang</th>
                         <th>Status</th>
                     </tr>
@@ -111,13 +102,13 @@ $allProdi = $prodiModel->getAllProdi();
                 <tbody>
                     <?php if (empty($packages)): ?>
                         <tr>
-                            <td colspan="6" style="text-align: center; padding: 2rem;">
+                            <td colspan="5" style="text-align: center; padding: 2rem;">
                                 Tidak ada paket yang belum diambil
                             </td>
                         </tr>
                     <?php else: ?>
                         <?php $no = 1; foreach ($packages as $package): ?>
-                            <tr data-prodi="<?= $package['prodi_id'] ?>">
+                            <tr>
                                 <td><?= $no++ ?></td>
                                 <td>
                                     <?php if ($package['foto_paket']): ?>
@@ -129,7 +120,6 @@ $allProdi = $prodiModel->getAllProdi();
                                     <?php endif; ?>
                                 </td>
                                 <td><strong><?= htmlspecialchars($package['nama_penerima']) ?></strong></td>
-                                <td><?= htmlspecialchars($package['nama_prodi']) ?></td>
                                 <td><?= date('d M Y', strtotime($package['tanggal_datang'])) ?></td>
                                 <td>
                                     <span class="badge badge-danger">
@@ -197,21 +187,6 @@ $allProdi = $prodiModel->getAllProdi();
 
     <script src="assets/js/main.js"></script>
     <script>
-        // Filter by prodi
-        document.getElementById('filterProdi').addEventListener('change', function() {
-            const prodiId = this.value;
-            const rows = document.querySelectorAll('#packageTable tbody tr');
-            
-            rows.forEach(row => {
-                if (prodiId === '' || row.getAttribute('data-prodi') === prodiId) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            });
-        });
-
-        // Cek paket function
         async function cekPaket() {
             const input = document.getElementById('cekPaketInput').value.trim();
             const hasil = document.getElementById('hasilCekPaket');

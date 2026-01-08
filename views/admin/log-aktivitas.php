@@ -36,6 +36,9 @@ $logs = $userModel->getActivityLogs(100);
                 <a href="tambah-paket.php">➕ Tambah Paket</a>
             </li>
             <li class="sidebar-menu-item">
+                <a href="riwayat-paket.php">🕓 Riwayat Paket</a>
+            </li>
+            <li class="sidebar-menu-item">
                 <a href="manajemen-petugas.php">👥 Manajemen Petugas</a>
             </li>
             <li class="sidebar-menu-item">

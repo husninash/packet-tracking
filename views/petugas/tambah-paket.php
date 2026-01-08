@@ -8,9 +8,6 @@ require_once __DIR__ . '/../../config/config.php';
 
 requireRole(ROLE_PETUGAS);
 
-$prodiModel = new ProgramStudi();
-$allProdi = $prodiModel->getAllProdi();
-
 // Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $packageController = new PackageController();
@@ -90,22 +87,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 type="text" 
                                 name="nama_penerima" 
                                 class="form-control" 
-                                placeholder="Masukkan nama lengkap"
+                                placeholder="Masukkan nama lengkap penerima"
                                 required
                             >
-                        </div>
-
-                        <!-- Program Studi -->
-                        <div class="form-group">
-                            <label class="form-label required">Program Studi</label>
-                            <select name="prodi_id" class="form-control" required>
-                                <option value="">Pilih Program Studi</option>
-                                <?php foreach ($allProdi as $prodi): ?>
-                                    <option value="<?= $prodi['id'] ?>">
-                                        <?= htmlspecialchars($prodi['nama_prodi']) ?>
-                                    </option>
-                                <?php endforeach; ?>
-                            </select>
                         </div>
 
                         <!-- Tanggal Datang -->

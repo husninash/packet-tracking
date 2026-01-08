@@ -36,6 +36,9 @@ $packages = $packageModel->getAllPackages();
                 <a href="tambah-paket.php">➕ Tambah Paket</a>
             </li>
             <li class="sidebar-menu-item">
+                <a href="riwayat-paket.php">🕓 Riwayat Paket</a>
+            </li>
+            <li class="sidebar-menu-item">
                 <a href="manajemen-petugas.php">👥 Manajemen Petugas</a>
             </li>
             <li class="sidebar-menu-item">
@@ -77,8 +80,6 @@ $packages = $packageModel->getAllPackages();
                                 <th>No</th>
                                 <th>Foto Paket</th>
                                 <th>Nama Penerima</th>
-                                <th>NIM</th>
-                                <th>Prodi</th>
                                 <th>Tanggal Datang</th>
                                 <th>Petugas</th>
                                 <th>Status</th>
@@ -98,8 +99,6 @@ $packages = $packageModel->getAllPackages();
                                         <?php endif; ?>
                                     </td>
                                     <td><?= htmlspecialchars($pkg['nama_penerima']) ?></td>
-                                    <td><?= htmlspecialchars($pkg['nim']) ?></td>
-                                    <td><?= htmlspecialchars($pkg['nama_prodi']) ?></td>
                                     <td><?= date('d-m-Y', strtotime($pkg['tanggal_datang'])) ?></td>
                                     <td><?= htmlspecialchars($pkg['petugas_penerima']) ?></td>
                                     <td>

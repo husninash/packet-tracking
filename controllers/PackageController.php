@@ -58,18 +58,18 @@ class PackageController {
 
             $data = [
                 'nama_penerima' => trim($_POST['nama_penerima'] ?? ''),
-                'nim' => trim($_POST['nim'] ?? ''),
-                'prodi_id' => $_POST['prodi_id'] ?? '',
+                'nim' => '', // Default empty - field hidden from UI
+                'prodi_id' => 1, // Default to first prodi - field hidden from UI
                 'tanggal_datang' => $_POST['tanggal_datang'] ?? '',
                 'petugas_penerima' => trim($_POST['petugas_penerima'] ?? ''),
                 'catatan' => trim($_POST['catatan'] ?? '')
             ];
 
-            // Validate required fields (nim and catatan are optional)
+            // Validate required fields (only nama, tanggal, petugas)
             if (empty($data['nama_penerima']) || 
-                empty($data['prodi_id']) || empty($data['tanggal_datang']) || 
+                empty($data['tanggal_datang']) || 
                 empty($data['petugas_penerima'])) {
-                return ['success' => false, 'message' => 'Nama, Prodi, Tanggal, dan Pengirim wajib diisi'];
+                return ['success' => false, 'message' => 'Nama Penerima, Tanggal Datang, dan Petugas Penerima wajib diisi'];
             }
 
             // Handle foto upload
@@ -102,18 +102,18 @@ class PackageController {
 
             $data = [
                 'nama_penerima' => $_POST['nama_penerima'] ?? '',
-                'nim' => $_POST['nim'] ?? '',
-                'prodi_id' => $_POST['prodi_id'] ?? '',
+                'nim' => '', // Default empty - field hidden from UI
+                'prodi_id' => 1, // Default to first prodi - field hidden from UI
                 'tanggal_datang' => $_POST['tanggal_datang'] ?? '',
                 'petugas_penerima' => $_POST['petugas_penerima'] ?? '',
                 'catatan' => $_POST['catatan'] ?? ''
             ];
 
-            // Validate required fields
-            if (empty($data['nama_penerima']) || empty($data['nim']) || 
-                empty($data['prodi_id']) || empty($data['tanggal_datang']) || 
+            // Validate required fields (only nama, tanggal, petugas)
+            if (empty($data['nama_penerima']) || 
+                empty($data['tanggal_datang']) || 
                 empty($data['petugas_penerima'])) {
-                return ['success' => false, 'message' => 'Semua field wajib harus diisi'];
+                return ['success' => false, 'message' => 'Nama Penerima, Tanggal Datang, dan Petugas Penerima wajib diisi'];
             }
 
             // Handle foto upload

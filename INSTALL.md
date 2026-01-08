@@ -106,10 +106,39 @@ Ketika klik "Tandai Sudah Diambil":
 
 ## ⚙️ Konfigurasi Tambahan (Opsional)
 
-### Ubah Base URL (jika beda port/folder)
-Edit `config/config.php`:
+### Ubah Port MySQL (PENTING jika Port MySQL Berbeda)
+Jika XAMPP Anda menggunakan port MySQL selain **3307**, ubah file berikut:
+
+**File:** `config/database.php`  
+**Line 8:**
 ```php
+define('DB_PORT', 3307);  // Ubah 3307 ke port MySQL Anda
+```
+
+> 💡 **Cara Cek Port MySQL:**
+> 1. Buka XAMPP Control Panel
+> 2. Klik tombol "Config" di samping MySQL
+> 3. Pilih "my.ini"
+> 4. Cari baris yang berisi `port=` (biasanya 3306 atau 3307)
+
+> ⚠️ **Port Default XAMPP:**
+> - MySQL biasanya: **3306** (standar) atau **3307** (jika bentrok dengan service lain)
+> - Apache biasanya: **80** atau **8080**
+
+### Ubah Port Apache / Base URL (jika beda port/folder)
+Jika Apache Anda menggunakan port selain **80** (misal: 8080), atau nama folder berbeda:
+
+**File:** `config/config.php`  
+**Line 16:**
+```php
+// Jika Apache port 80 (default):
 define('BASE_URL', 'http://localhost/SistemPaketUnhan/');
+
+// Jika Apache port 8080:
+define('BASE_URL', 'http://localhost:8080/SistemPaketUnhan/');
+
+// Jika nama folder berbeda, misalnya 'paket':
+define('BASE_URL', 'http://localhost/paket/');
 ```
 
 ### Tambah Program Studi
